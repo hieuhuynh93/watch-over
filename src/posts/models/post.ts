@@ -2,9 +2,9 @@ import { DateTime } from 'luxon'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
 
-import User from '#models/user'
+import { User } from '#src/users/models/user'
 
-export default class Post extends BaseModel {
+export class Post extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 

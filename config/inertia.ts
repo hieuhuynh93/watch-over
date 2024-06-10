@@ -18,6 +18,6 @@ export default defineConfig({
    */
   ssr: {
     enabled: true,
-    entrypoint: 'src/app/ssr.tsx',
+    entrypoint: 'resources/app/ssr.tsx',
   },
 })

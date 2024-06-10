@@ -6,9 +6,9 @@ import adonisjs from '@adonisjs/vite/client'
 
 export default defineConfig({
   plugins: [
-    inertia({ ssr: { enabled: true, entrypoint: 'src/app/ssr.tsx' } }),
+    inertia({ ssr: { enabled: true, entrypoint: 'resources/app/ssr.tsx' } }),
     react(),
-    adonisjs({ entrypoints: ['src/app/app.tsx'], reload: ['src/views/**/*.edge'] }),
+    adonisjs({ entrypoints: ['resources/app/app.tsx'], reload: ['resources/views/**/*.edge'] }),
   ],
 
   /**

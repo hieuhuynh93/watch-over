@@ -9,8 +9,69 @@
 
 import router from '@adonisjs/core/services/router'
 
-const HomeController = () => import('#controllers/home_controller')
-const PostsController = () => import('#controllers/posts_controller')
+const HomeController = () => import('#app/controllers/home_controller')
+const LoginController = () => import('#src/auth/controllers/login_controller')
+const PostsController = () => import('#app/controllers/posts_controller')
 
 router.get('/', [HomeController, 'index'])
 router.get('/posts', [PostsController, 'index'])
+router.get('/login', [LoginController, 'render'])
+
+router.get('/google/redirect', ({ ally }) => {
+  // Google driver instance
+  return ally.use('google').redirect((request) => {
+    request.scopes(['user:email', ''])
+    request.param('allow_signup', false)
+  })
+})
+
+router.get('/github/callback', async ({ ally }) => {
+  const google = ally.use('google')
+
+  /**
+   * User has denied access by canceling
+   * the login flow
+   */
+  if (google.accessDenied()) {
+    return 'You have cancelled the login process'
+  }
+
+  /**
+   * OAuth state verification failed. This happens when the
+   * CSRF cookie gets expired.
+   */
+  if (google.stateMisMatch()) {
+    return 'We are unable to verify the request. Please try again'
+  }
+
+  /**
+   * GitHub responded with some error
+   */
+  if (google.hasError()) {
+    return google.getError()
+  }
+
+  /**
+   * Access user info
+   */
+  const user = await google.user()
+
+  console.log('user', user)
+
+  // user.id
+  // user.email
+  // user.emailVerificationState
+  // user.name
+  // user.nickName
+  // user.avatarUrl
+  // user.token
+  // user.original
+
+  // user.token.token
+  // user.token.type
+  // user.token.refreshToken
+  // user.token.expiresAt
+  // user.token.expiresIn
+
+  return user
+})
