@@ -1,7 +1,9 @@
 import { I18n } from '@adonisjs/i18n'
 import i18nManager from '@adonisjs/i18n/services/main'
 import type { NextFn } from '@adonisjs/core/types/http'
+import emitter from '@adonisjs/core/services/emitter'
 import { type HttpContext, RequestValidator } from '@adonisjs/core/http'
+import logger from '@adonisjs/core/services/logger'
 
 /**
  * The "DetectUserLocaleMiddleware" middleware uses i18n service to share
@@ -39,7 +41,10 @@ export default class DetectUserLocaleMiddleware {
     /**
      * Assigning i18n property to the HTTP context
      */
-    ctx.i18n = i18nManager.locale(language || i18nManager.defaultLocale)
+    ctx.i18n = Object.assign(i18nManager.locale(language || i18nManager.defaultLocale), {
+      currentLocale: language || i18nManager.defaultLocale,
+      supportedLocales: i18nManager.supportedLocales(),
+    })
 
     /**
      * Binding I18n class to the request specific instance of it.
@@ -48,6 +53,10 @@ export default class DetectUserLocaleMiddleware {
      * injected somwhere.
      */
     ctx.containerResolver.bindValue(I18n, ctx.i18n)
+
+    emitter.on('i18n:missing:translation', function (event) {
+      logger.info('missing translation', event.identifier, event.hasFallback, event.locale)
+    })
 
     /**
      * Sharing request specific instance of i18n with edge
@@ -69,6 +78,18 @@ export default class DetectUserLocaleMiddleware {
  */
 declare module '@adonisjs/core/http' {
   export interface HttpContext {
-    i18n: I18n
+    i18n: I18n & {
+      currentLocale: string
+      supportedLocales: string[]
+    }
   }
 }
+
+/**
+ * Notify TypeScript about i18n property
+ */
+// declare module '@adonisjs/core/http' {
+//   export interface HttpContext {
+//     i18n: I18n
+//   }
+// }

@@ -5,7 +5,13 @@ const allyConfig = defineConfig({
   google: services.google({
     clientId: env.get('GOOGLE_CLIENT_ID'),
     clientSecret: env.get('GOOGLE_CLIENT_SECRET'),
-    callbackUrl: '',
+    callbackUrl: 'http://localhost:3333/google/callback',
+    // Google specific
+    prompt: 'select_account',
+    accessType: 'offline',
+    hostedDomain: 'localhost',
+    display: 'page',
+    scopes: ['userinfo.email', 'userinfo.profile'],
   }),
 })
 

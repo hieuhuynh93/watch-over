@@ -6,7 +6,6 @@ const i18nConfig = defineConfig({
   formatter: formatters.icu(),
   supportedLocales: ['en', 'fr'],
   fallbackLocales: {
-    'en-UK': 'en',
     'en-US': 'en',
     'fr-FR': 'fr',
   },
