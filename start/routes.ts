@@ -7,85 +7,37 @@
 |
 */
 
+import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
+
+const AuthController = () => import('#src/auth/controllers/auth_controller')
 
 const HomeController = () => import('#app/controllers/home_controller')
 const LoginController = () => import('#src/auth/controllers/login_controller')
+const LogoutController = () => import('#src/auth/controllers/logout_controller')
+
+const DashboardController = () => import('#src/dashboard/controllers/dashboard_controller')
 // const PostsController = () => import('#app/controllers/posts_controller')
 
-router.get('/', [HomeController, 'index'])
+router.get('/', [HomeController, 'index']).as('home')
 // router.get('/posts', [PostsController, 'index'])
+
 router.get('/login', [LoginController, 'render']).as('auth.login')
 router.post('/login', [LoginController, 'execute'])
+router.get('/logout', [LogoutController]).as('auth.logout')
+
+router.get('/google/redirect', [AuthController, 'redirect']).as('google.redirect')
+router.get('/google/callback', [AuthController, 'callback']).as('google.callback')
+
+router
+  .group(() => {
+    router.get('/', [DashboardController, 'index']).as('index')
+  })
+  .use(middleware.auth({ guards: ['web'] }))
+  .prefix('dashboard')
 
 router
   .group(() => {})
+  .use(middleware.auth({ guards: ['web', 'api'] }))
   .prefix('admin')
   .as('admin')
-
-router
-  .group(() => {})
-  .prefix('dashboard')
-  .as('dashboard')
-
-router.get('/google/redirect', ({ ally }) => {
-  // Google driver instance
-  ally
-    .use('google')
-    .redirect
-    //   (request) => {
-    //   request.scopes(['userinfo.profile', 'userinfo.email'])
-    // }
-    ()
-})
-
-router.get('/google/callback', async ({ ally }) => {
-  const google = ally.use('google')
-
-  /**
-   * User has denied access by canceling
-   * the login flow
-   */
-  if (google.accessDenied()) {
-    return 'You have cancelled the login process'
-  }
-
-  /**
-   * OAuth state verification failed. This happens when the
-   * CSRF cookie gets expired.
-   */
-  if (google.stateMisMatch()) {
-    return 'We are unable to verify the request. Please try again'
-  }
-
-  /**
-   * GitHub responded with some error
-   */
-  if (google.hasError()) {
-    return google.getError()
-  }
-
-  /**
-   * Access user info
-   */
-  const user = await google.user()
-
-  // console.log('user', user)
-
-  // user.id
-  // user.email
-  // user.emailVerificationState
-  // user.name
-  // user.nickName
-  // user.avatarUrl
-  // user.token
-  // user.original
-
-  // user.token.token
-  // user.token.type
-  // user.token.refreshToken
-  // user.token.expiresAt
-  // user.token.expiresIn
-
-  return user
-})

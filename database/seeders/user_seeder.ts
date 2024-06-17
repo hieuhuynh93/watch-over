@@ -1,4 +1,4 @@
-import { User } from '#src/users/models/user'
+import User from '#src/users/models/user'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {

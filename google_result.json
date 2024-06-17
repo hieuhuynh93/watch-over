@@ -1,0 +1,28 @@
+{
+  "id": "116556378276418121028",
+  "nickName": "Morgan Leroux",
+  "name": "Morgan Leroux",
+  "email": "contact@morgan-leroux.com",
+  "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIh4N_zf7_ltNNx1YHO0RNVKlqTqdsGpJohyfRqhrigghEgMA=s96-c",
+  "emailVerificationState": "verified",
+  "original": {
+    "sub": "116556378276418121028",
+    "name": "Morgan Leroux",
+    "given_name": "Morgan",
+    "family_name": "Leroux",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocIh4N_zf7_ltNNx1YHO0RNVKlqTqdsGpJohyfRqhrigghEgMA=s96-c",
+    "email": "contact@morgan-leroux.com",
+    "email_verified": true,
+    "hd": "morgan-leroux.com"
+  },
+  "token": {
+    "token": "ya29.a0AXooCgvIWJfZqZja4s89Rge-EFR9cU5G1-XDNMQ9FIfWZenRbilzP_3JtX5zvZFHD7xDUCAh3iRq5z12TDWhuu_oKoxm3KNHoeHW7h_z77-N2SUiztM9ZKiYGtjx2_pfsAvK4oDa6XCsaYwP4YFwavJQfbjVf2jZDjGOaCgYKAcoSARMSFQHGX2Midz3W2dzY83kx-QLUNyFcJg0171",
+    "type": "Bearer",
+    "expiresIn": 3599,
+    "expiresAt": "2024-06-17T00:07:38.721Z",
+    "refreshToken": "1//03oeLIBSbLK40CgYIARAAGAMSNwF-L9Ir7SscXze8PhqqyXSeEixx1GbWh5J3CAdQTJdOY__mbfCdzqCsKTL3cVrbahKYGds-w-A",
+    "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile openid",
+    "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImMzYWJlNDEzYjIyNjhhZTk3NjQ1OGM4MmMxNTE3OTU0N2U5NzUyN2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDY1ODM2NTA1MDI2LTFmbThqb2JoaHMyMmxka2xwN2sxZHNsZWxjZTZhOXBjLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA2NTgzNjUwNTAyNi0xZm04am9iaGhzMjJsZGtscDdrMWRzbGVsY2U2YTlwYy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjU1NjM3ODI3NjQxODEyMTAyOCIsImhkIjoibW9yZ2FuLWxlcm91eC5jb20iLCJlbWFpbCI6ImNvbnRhY3RAbW9yZ2FuLWxlcm91eC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImVFb0tFWG1Mb3M5LV80Tms3bXVhaUEiLCJuYW1lIjoiTW9yZ2FuIExlcm91eCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaDROX3pmN19sdE5OeDFZSE8wUk5WS2xxVHFkc0dwSm9oeWZScWhyaWdnaEVnTUE9czk2LWMiLCJnaXZlbl9uYW1lIjoiTW9yZ2FuIiwiZmFtaWx5X25hbWUiOiJMZXJvdXgiLCJpYXQiOjE3MTg1NzkyNTksImV4cCI6MTcxODU4Mjg1OX0.XCbwpkvbYNCBbRl0EZzOZC21Oe10GCsb7xIoAibWBsTFshZewVliNjFZsLO6yg2R-JdlWnC9jccQ5JMohkYUHcDtV47S90mWjLiKB1A-mg1_p2_itm4pkXz00zx73xxalRZGqY_4obEMl6mJHI1P0LflUXvDSCpR9p6ytQt-FdhYsS0iF-fJp9I1M9velgpWRGsAlLR10IBKnnjApPUU3RDyKPjgyKHy5ztP-pT9v7N28K6viqRTvlNIBZHgMUyCl69kvedVVrXQlrdpU0Fc98c_8aaIz9BFI27i1JZfQqHpc2ppjW1Dfsp2LaZPzvb1WqzKTzmvmqxVLN12EXDHbg",
+    "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImMzYWJlNDEzYjIyNjhhZTk3NjQ1OGM4MmMxNTE3OTU0N2U5NzUyN2UiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDY1ODM2NTA1MDI2LTFmbThqb2JoaHMyMmxka2xwN2sxZHNsZWxjZTZhOXBjLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA2NTgzNjUwNTAyNi0xZm04am9iaGhzMjJsZGtscDdrMWRzbGVsY2U2YTlwYy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNjU1NjM3ODI3NjQxODEyMTAyOCIsImhkIjoibW9yZ2FuLWxlcm91eC5jb20iLCJlbWFpbCI6ImNvbnRhY3RAbW9yZ2FuLWxlcm91eC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6ImVFb0tFWG1Mb3M5LV80Tms3bXVhaUEiLCJuYW1lIjoiTW9yZ2FuIExlcm91eCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJaDROX3pmN19sdE5OeDFZSE8wUk5WS2xxVHFkc0dwSm9oeWZScWhyaWdnaEVnTUE9czk2LWMiLCJnaXZlbl9uYW1lIjoiTW9yZ2FuIiwiZmFtaWx5X25hbWUiOiJMZXJvdXgiLCJpYXQiOjE3MTg1NzkyNTksImV4cCI6MTcxODU4Mjg1OX0.XCbwpkvbYNCBbRl0EZzOZC21Oe10GCsb7xIoAibWBsTFshZewVliNjFZsLO6yg2R-JdlWnC9jccQ5JMohkYUHcDtV47S90mWjLiKB1A-mg1_p2_itm4pkXz00zx73xxalRZGqY_4obEMl6mJHI1P0LflUXvDSCpR9p6ytQt-FdhYsS0iF-fJp9I1M9velgpWRGsAlLR10IBKnnjApPUU3RDyKPjgyKHy5ztP-pT9v7N28K6viqRTvlNIBZHgMUyCl69kvedVVrXQlrdpU0Fc98c_8aaIz9BFI27i1JZfQqHpc2ppjW1Dfsp2LaZPzvb1WqzKTzmvmqxVLN12EXDHbg"
+  }
+}

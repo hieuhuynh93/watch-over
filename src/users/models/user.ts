@@ -3,17 +3,19 @@ import { DateTime } from 'luxon'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
 
-import { Post } from '#src/posts/models/post'
+import { BaseModel, column, hasOne, manyToMany } from '@adonisjs/lucid/orm'
+import type { HasOne, ManyToMany } from '@adonisjs/lucid/types/relations'
+
+import Profile from '#src/users/models/profile'
+import Team from '#src/users/models/team'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
   passwordColumnName: 'password',
 })
 
-export class User extends compose(BaseModel, AuthFinder) {
+export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: string
 
@@ -21,7 +23,7 @@ export class User extends compose(BaseModel, AuthFinder) {
   declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  declare lastConnected: DateTime | null
 
   @column()
   declare email: string
@@ -29,6 +31,15 @@ export class User extends compose(BaseModel, AuthFinder) {
   @column({ serializeAs: null })
   declare password: string
 
-  @hasMany(() => Post)
-  declare posts: HasMany<typeof Post>
+  @column()
+  declare rememberMeToken: string | null
+
+  @column()
+  declare isVerified: boolean
+
+  @column()
+  declare emailVerificationToken: string | null
+
+  @hasOne(() => Profile)
+  declare profile: HasOne<typeof Profile>
 }
