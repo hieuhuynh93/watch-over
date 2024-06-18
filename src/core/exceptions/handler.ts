@@ -32,12 +32,9 @@ export default class HttpExceptionHandler extends ExceptionHandler {
    * response to the client
    */
   async handle(error: unknown, ctx: HttpContext) {
-    // const { t } = i18nManager.locale(ctx.i18n.locale)
-
     if (error instanceof authErrors.E_INVALID_CREDENTIALS) {
       ctx.session.flash('alert', {
         code: 'E_INVALID_CREDENTIALS',
-        // message: t('alert.E_INVALID_CREDENTIALS'),
       })
 
       return ctx.response.redirect().back()

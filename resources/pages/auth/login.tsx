@@ -1,12 +1,12 @@
 import { FormEvent } from 'react'
-import { Link, useForm, usePage } from '@inertiajs/react'
+import { Link, useForm, usePage, useRemember } from '@inertiajs/react'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
 import { Label } from '#components/ui/label'
 import { Button, buttonVariants } from '#components/ui/button'
 import { Loader } from '#components/ui/loader'
 
-import { Input } from '#containers/input'
+import { Input } from '#containers/ui/input'
 
 import GoogleIcon from '#resources/assets/logo/google.svg'
 import { tuyau } from '#resources/core/tuyau'
@@ -14,9 +14,12 @@ import { AuthShell } from '#resources/layout/auth_shell'
 import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
 
-export default function LoginPage({ i18n }) {
-  const { props } = usePage()
-  const { alert, ...rest } = props
+export default function LoginPage() {
+  const { t } = useRemember
+  const {
+    props: { alert },
+  } = usePage()
+  // const { alert: { message: string }, ...rest } = props
 
   const { errors, post, processing, data, setData } = useForm({
     email: '',
@@ -31,23 +34,18 @@ export default function LoginPage({ i18n }) {
     post(tuyau.$url('auth.login'))
   }
 
-  console.log('alert', alert)
-  console.log('props', props)
-  console.log('rest', rest)
-  console.log('i18n', i18n)
-
   return (
     <AuthShell>
       <div className={cn('grid gap-6')}>
-        <form action="" method="POST" onSubmit={handleSubmit}>
+        <form method="POST" onSubmit={handleSubmit}>
           <div className="grid gap-2">
             <div className="grid gap-1">
-              {/* {alert && 'code' in alert && (
+              {!!alert && (
                 <Alert variant="destructive" className="mb-4">
                   <ExclamationTriangleIcon className="h-4 w-4" />
-                  <AlertDescription>{alert.message}</AlertDescription>
+                  <AlertDescription>{t((alert as { code: string }).code)}</AlertDescription>
                 </Alert>
-              )} */}
+              )}
               <Label htmlFor="email">Email</Label>
               <Input
                 name="email"

@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react'
-import { Link } from '@inertiajs/react'
-import { buttonVariants } from '#components/ui/button'
-import { cn } from '#resources/lib/utils'
+import { Link, useForm } from '@inertiajs/react'
 
+import { buttonVariants } from '#components/ui/button'
+import { Select } from '#containers/ui/select'
+
+import { cn } from '#resources/lib/utils'
 import Logo from '#resources/assets/brand.svg?react'
 
 interface AuthShellProps {
@@ -10,6 +12,10 @@ interface AuthShellProps {
 }
 
 export function AuthShell({ children }: AuthShellProps) {
+  const { data, setData, errors, processing } = useForm({
+    language: 'en',
+  })
+
   return (
     <>
       <aside className="md:hidden">
@@ -48,6 +54,15 @@ export function AuthShell({ children }: AuthShellProps) {
           </footer>
         </aside>
         <article className="lg:p-8">
+          <Select
+            name="language"
+            options={[
+              { label: '🇬🇧 English', value: 'en' },
+              { label: '🇫🇷 Français', value: 'fr' },
+            ]}
+            disabled={processing}
+            {...{ data, setData, errors }}
+          />
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
