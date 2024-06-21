@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 
 export default function Home(props: { version: number; user: { name: string } }) {
   return (
@@ -6,6 +6,7 @@ export default function Home(props: { version: number; user: { name: string } })
       <Head title="Homepage" />
 
       <div className="container">
+        <Link href="/login">Login</Link>
         <div className="title">AdonisJS {props.version} x Inertia x React</div>
 
         <span>

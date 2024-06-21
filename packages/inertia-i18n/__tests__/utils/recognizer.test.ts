@@ -1,3 +1,0 @@
-describe('recognizer', () => {
-  test.todo('---');
-});

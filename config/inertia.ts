@@ -12,10 +12,7 @@ export default defineConfig({
   sharedData: {
     alert: ({ session }) => session?.flashMessages.get('alert'),
     errors: ({ session }) => session?.flashMessages.get('errors'),
-    i18n: ({ i18n: { fallbackLocale, supportedLocales } }) => ({
-      fallbackLocale,
-      supportedLocales,
-    }),
+    i18n: ({ i18n }) => i18n,
     locale: ({ session }) => session?.get('locale'),
   },
 

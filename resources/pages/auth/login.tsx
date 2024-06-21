@@ -1,5 +1,6 @@
-import { FormEvent, useEffect } from 'react'
-import { Link, useForm, usePage, useRemember } from '@inertiajs/react'
+import { FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useForm, usePage } from '@inertiajs/react'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
 import { Label } from '#components/ui/label'
@@ -13,12 +14,11 @@ import { tuyau } from '#resources/core/tuyau'
 import { AuthShell } from '#resources/layout/auth_shell'
 import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
-import useTranslation from '#packages/inertia-i18n/src/hook'
 
 export default function LoginPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const {
-    props: { alert, i18n },
+    props: { alert },
   } = usePage()
 
   const { errors, post, processing, data, setData } = useForm({
@@ -37,7 +37,7 @@ export default function LoginPage() {
   return (
     <AuthShell>
       <div className={cn('grid gap-6')}>
-        <p className="text-lg font-bold">{t('greeting')}</p>
+        <p className="text-lg font-bold">{t('messages.greeting')}</p>
         <form method="POST" onSubmit={handleSubmit}>
           <div className="grid gap-2">
             <div className="grid gap-1">

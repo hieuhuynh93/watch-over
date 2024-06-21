@@ -1,23 +1,22 @@
-import { useForm } from '@inertiajs/react'
+import { useForm, usePage } from '@inertiajs/react'
 
 import { Select } from '#containers/ui/select'
 import { tuyau } from '#resources/core/tuyau'
 import { Loader } from '#components/ui/loader'
 
-import useTranslation from '#packages/inertia-i18n/src/hook'
-
 export function LanguageSwitch() {
-  const { setLocale, currentLocale } = useTranslation()
+  const {
+    props: { locale },
+  } = usePage()
 
   const { data, setData, errors, processing, post } = useForm({
-    language: currentLocale(),
+    language: locale,
   })
 
   function handleChange() {
     if (processing) return
 
     post(tuyau.$url('language.update', { params: { locale: data.language } }))
-    setLocale(data.language)
   }
 
   if (processing)
