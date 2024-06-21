@@ -22,7 +22,7 @@ export default function LoginPage({}) {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
-    post(tuyau.$url('auth.login'), { data: new FormData(event.target as HTMLFormElement) })
+    post(tuyau.$url('auth.login'))
   }
 
   return (

@@ -1,4 +1,4 @@
-import { FormEvent } from 'react'
+import { FormEvent, useEffect } from 'react'
 import { Link, useForm, usePage, useRemember } from '@inertiajs/react'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
@@ -13,13 +13,13 @@ import { tuyau } from '#resources/core/tuyau'
 import { AuthShell } from '#resources/layout/auth_shell'
 import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
+import useTranslation from '#packages/inertia-i18n/src/hook'
 
 export default function LoginPage() {
-  const { t } = useRemember
+  const { t } = useTranslation()
   const {
-    props: { alert },
+    props: { alert, i18n },
   } = usePage()
-  // const { alert: { message: string }, ...rest } = props
 
   const { errors, post, processing, data, setData } = useForm({
     email: '',
@@ -28,22 +28,23 @@ export default function LoginPage() {
   })
 
   function handleSubmit(ev: FormEvent) {
-    ev.preventDefault()
-
     if (processing) return
+
+    ev.preventDefault()
     post(tuyau.$url('auth.login'))
   }
 
   return (
     <AuthShell>
       <div className={cn('grid gap-6')}>
+        <p className="text-lg font-bold">{t('greeting')}</p>
         <form method="POST" onSubmit={handleSubmit}>
           <div className="grid gap-2">
             <div className="grid gap-1">
               {!!alert && (
                 <Alert variant="destructive" className="mb-4">
                   <ExclamationTriangleIcon className="h-4 w-4" />
-                  <AlertDescription>{t((alert as { code: string }).code)}</AlertDescription>
+                  <AlertDescription>{(alert as { code: string }).code}</AlertDescription>
                 </Alert>
               )}
               <Label htmlFor="email">Email</Label>

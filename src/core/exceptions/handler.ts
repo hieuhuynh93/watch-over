@@ -2,7 +2,6 @@ import { errors as authErrors } from '@adonisjs/auth'
 import app from '@adonisjs/core/services/app'
 import { type HttpContext, ExceptionHandler } from '@adonisjs/core/http'
 import type { StatusPageRange, StatusPageRenderer } from '@adonisjs/core/types/http'
-import i18nManager from '@adonisjs/i18n/services/main'
 
 export default class HttpExceptionHandler extends ExceptionHandler {
   /**

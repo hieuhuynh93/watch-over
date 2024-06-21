@@ -5,12 +5,18 @@ import react from '@vitejs/plugin-react'
 import adonisjs from '@adonisjs/vite/client'
 import svgr from 'vite-plugin-svgr'
 
+import i18n from '#packages/inertia-i18n/vite'
+
 export default defineConfig({
   plugins: [
+    i18n(),
     inertia({ ssr: { enabled: true, entrypoint: 'resources/app/ssr.tsx' } }),
     react(),
     svgr(),
-    adonisjs({ entrypoints: ['resources/app/app.tsx'], reload: ['resources/views/**/*.edge'] }),
+    adonisjs({
+      entrypoints: ['resources/app/app.tsx'],
+      reload: ['resources/views/**/*.edge', 'resources/lang/**/*.json'],
+    }),
   ],
 
   /**

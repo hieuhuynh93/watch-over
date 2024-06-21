@@ -10,9 +10,13 @@ export default defineConfig({
    * Data that should be shared with all rendered pages
    */
   sharedData: {
-    alert: (ctx) => ctx.session?.flashMessages.get('alert'),
-    errors: (ctx) => ctx.session?.flashMessages.get('errors'),
-    i18n: (ctx) => ctx.i18n,
+    alert: ({ session }) => session?.flashMessages.get('alert'),
+    errors: ({ session }) => session?.flashMessages.get('errors'),
+    i18n: ({ i18n: { fallbackLocale, supportedLocales } }) => ({
+      fallbackLocale,
+      supportedLocales,
+    }),
+    locale: ({ session }) => session?.get('locale'),
   },
 
   /**

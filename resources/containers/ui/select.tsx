@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
   Select as SelectComponent,
   SelectContent,
@@ -8,19 +8,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from '#components/ui/select'
-import { browseByKeyString } from '#resources/lib/utils'
+import { browseByKeyString, cn } from '#resources/lib/utils'
 
 type Option = {
-  label: string
+  label: string | ReactNode
   value?: string
 }
 
 export interface SelectProps<TForm> extends React.SelectHTMLAttributes<HTMLSelectElement> {
   name: string
+  placeholder?: string
+  className: string
   options: Option[]
   errors: TForm
+  hideSelected?: boolean
+  noCheck?: boolean
   data: TForm
   setData: SetDataByKeyValuePair<TForm>
+  ref?: React.RefObject<HTMLSelectElement>
 }
 
 type SetDataByKeyValuePair<TForm> = <K extends keyof TForm>(key: K, value: TForm[K]) => void
@@ -28,35 +33,55 @@ type SetDataByKeyValuePair<TForm> = <K extends keyof TForm>(key: K, value: TForm
 type TForm = any
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps<TForm>>(
-  ({ data, setData, errors, options = [], ...props }, ref) => {
+  (
+    {
+      className,
+      value,
+      data,
+      setData,
+      errors,
+      placeholder,
+      hideSelected = false,
+      noCheck = false,
+      options = [],
+      ...props
+    },
+    ref
+  ) => {
     const error = `${browseByKeyString(errors, props?.name) || ''}`
     const currentValue = `${browseByKeyString(data, props?.name) || ''}`
 
-    console.log('select', options, props)
-
     return (
-      <div>
+      <div className={className}>
         <SelectComponent
           ref={ref}
           id={props.name}
-          value={currentValue}
-          onSelect={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            setData(props?.name, e.target.value)
-          }
+          value={value ? `${value}` : currentValue || ''}
+          onValueChange={(value) => setData(props?.name, value)}
           {...props}
         >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select a fruit" />
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {options.map(({ label, value }) => {
+              {options.map(({ label, value }, index) =>
                 !value ? (
                   <SelectLabel>{label}</SelectLabel>
                 ) : (
-                  <SelectItem value={value}>{label}</SelectItem>
+                  <SelectItem
+                    check={!hideSelected}
+                    key={`${value}_${index}`}
+                    className={cn(
+                      'cursor-pointer',
+                      hideSelected && currentValue === value ? 'hidden' : ''
+                    )}
+                    value={value || ''}
+                  >
+                    {label}
+                  </SelectItem>
                 )
-              })}
+              )}
             </SelectGroup>
           </SelectContent>
         </SelectComponent>

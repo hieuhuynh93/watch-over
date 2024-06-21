@@ -42,9 +42,10 @@ export default class DetectUserLocaleMiddleware {
      * Assigning i18n property to the HTTP context
      */
     ctx.i18n = Object.assign(i18nManager.locale(language || i18nManager.defaultLocale), {
-      currentLocale: language || i18nManager.defaultLocale,
       supportedLocales: i18nManager.supportedLocales(),
     })
+
+    ctx.session.put('locale', language || i18nManager.defaultLocale)
 
     /**
      * Binding I18n class to the request specific instance of it.
@@ -71,6 +72,8 @@ export default class DetectUserLocaleMiddleware {
 
     return next()
   }
+
+  async update() {}
 }
 
 /**
@@ -79,17 +82,7 @@ export default class DetectUserLocaleMiddleware {
 declare module '@adonisjs/core/http' {
   export interface HttpContext {
     i18n: I18n & {
-      currentLocale: string
       supportedLocales: string[]
     }
   }
 }
-
-/**
- * Notify TypeScript about i18n property
- */
-// declare module '@adonisjs/core/http' {
-//   export interface HttpContext {
-//     i18n: I18n
-//   }
-// }
