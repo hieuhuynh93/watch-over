@@ -14,6 +14,8 @@ export default defineConfig({
     errors: ({ session }) => session?.flashMessages.get('errors'),
     i18n: ({ i18n }) => i18n,
     locale: ({ session }) => session?.get('locale'),
+    // auth: ({ auth }) => auth,
+    // user: ({ auth }) => auth?.user,
   },
 
   /**

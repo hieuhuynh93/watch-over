@@ -14,7 +14,7 @@ export default function Home(props: { version: number; user: { name: string } })
           <a href="https://docs.adonisjs.com/guides/inertia">AdonisJS documentation</a>.
         </span>
       </div>
-      {/* <p>Hello {props.user.name}</p> */}
+      <p>{props.user ? 'Hello' + props.user.name : 'Not authenticated'}</p>
     </>
   )
 }

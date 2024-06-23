@@ -9,12 +9,13 @@ export default class LanguageController {
      * Only update locale when it is part of the supportedLocales
      */
     if (i18nManager.supportedLocales().includes(locale)) {
-      console.log('locale switch to:', locale)
-
       session.put('locale', locale)
+      i18nManager.locale(locale)
       i18n.switchLocale(locale)
+
+      await i18nManager.reloadTranslations()
     }
 
-    response.redirect('/login')
+    response.redirect().back()
   }
 }

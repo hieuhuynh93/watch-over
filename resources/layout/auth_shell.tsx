@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import { Link, useForm } from '@inertiajs/react'
+import { useTranslation } from 'react-i18next'
+import { Link, usePage } from '@inertiajs/react'
 
 import { buttonVariants } from '#components/ui/button'
 
@@ -12,6 +13,9 @@ interface AuthShellProps {
 }
 
 export function AuthShell({ children }: AuthShellProps) {
+  const { url } = usePage()
+  const { t } = useTranslation()
+
   return (
     <>
       <aside className="md:hidden">
@@ -26,18 +30,23 @@ export function AuthShell({ children }: AuthShellProps) {
       <section className="container relative hidden min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="flex gap-4 absolute right-4 top-4 md:right-8 md:top-8">
           <LanguageSwitch />
-          <Link
-            href="/examples/authentication"
-            className={cn(buttonVariants({ variant: 'ghost' }))}
-          >
-            Login
-          </Link>
+          {url === '/login' ? (
+            <Link href="/signup" className={cn(buttonVariants({ variant: 'ghost' }))}>
+              {t('auth.signup.title')}
+            </Link>
+          ) : (
+            <Link href="/login" className={cn(buttonVariants({ variant: 'ghost' }))}>
+              {t('auth.login.title')}
+            </Link>
+          )}
         </div>
         <aside className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
           <div className="absolute inset-0 bg-zinc-900" />
-          <nav className="relative z-20 flex items-center text-lg font-medium">
-            <Logo className="w-10 h-10 min-w-10 mr-2" />
-            Watch Over
+          <nav className="relative z-20">
+            <Link href="/" className="flex items-center text-lg font-medium">
+              <Logo className="w-10 h-10 min-w-10 mr-2" />
+              WatchOver Comments
+            </Link>
           </nav>
           <footer className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
@@ -49,28 +58,7 @@ export function AuthShell({ children }: AuthShellProps) {
             </blockquote>
           </footer>
         </aside>
-        <article className="lg:p-8">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
-              <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
-              </p>
-            </div>
-            {children}
-            <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{' '}
-              <Link href="/terms" className="underline underline-offset-4 hover:text-primary">
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link href="/privacy" className="underline underline-offset-4 hover:text-primary">
-                Privacy Policy
-              </Link>
-              .
-            </p>
-          </div>
-        </article>
+        <article className="lg:p-8">{children}</article>
       </section>
     </>
   )

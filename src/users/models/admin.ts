@@ -4,8 +4,8 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 
-import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
-import type { HasOne } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column, hasOne, manyToMany } from '@adonisjs/lucid/orm'
+import type { HasOne, ManyToMany } from '@adonisjs/lucid/types/relations'
 
 import Profile from '#src/users/models/profile'
 
@@ -14,7 +14,7 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   passwordColumnName: 'password',
 })
 
-export default class User extends compose(BaseModel, AuthFinder) {
+export default class Admin extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: string
 
@@ -27,15 +27,21 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare email: string
 
+  @column()
+  declare locale: string
+
   @column({ serializeAs: null })
   declare password: string
 
   @column()
-  declare preferredLocale: string
+  declare rememberMeToken: string | null
 
   @column()
   declare isVerified: boolean
 
-  // @hasOne(() => Profile)
-  // declare profile: HasOne<typeof Profile>
+  @column()
+  declare emailVerificationToken: string | null
+
+  @hasOne(() => Profile)
+  declare profile: HasOne<typeof Profile>
 }

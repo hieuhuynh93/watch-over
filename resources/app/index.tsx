@@ -1,13 +1,13 @@
 import { createRoot } from 'react-dom/client'
 
-import i18nConfig from 'i18next'
+import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 
 import '../css/globals.css'
 
-const appName = import.meta.env.VITE_APP_NAME || 'Watch Over'
+const appName = import.meta.env.VITE_APP_NAME || 'WatchOver Comments'
 
 createInertiaApp({
   progress: { color: '#5468FF' },
@@ -25,7 +25,7 @@ createInertiaApp({
     const { i18n, locale = 'en' }: { i18n: OptionsInterface; locale?: string } =
       props.initialPage.props
 
-    i18nConfig.use(initReactI18next).init({
+    i18next.use(initReactI18next).init({
       resources: {
         [locale]: {
           translation: i18n?.localeTranslations,
@@ -52,7 +52,7 @@ createInertiaApp({
 
 // import '../css/globals.css'
 
-// const appName = import.meta.env.VITE_APP_NAME || 'Watch Over'
+// const appName = import.meta.env.VITE_APP_NAME || 'WatchOver Comments'
 
 // createInertiaApp({
 //   progress: { color: '#5468FF' },

@@ -15,7 +15,13 @@ export default class Profile extends BaseModel {
   declare userId: number
 
   @column()
-  declare name: string
+  declare pseudo: string
+
+  @column()
+  declare firstName: string
+
+  @column()
+  declare lastName: string
 
   @column()
   declare avatar: string

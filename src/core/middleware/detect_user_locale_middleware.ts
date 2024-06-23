@@ -41,11 +41,14 @@ export default class DetectUserLocaleMiddleware {
     /**
      * Assigning i18n property to the HTTP context
      */
-    ctx.i18n = Object.assign(i18nManager.locale(language || i18nManager.defaultLocale), {
-      supportedLocales: i18nManager.supportedLocales(),
-    })
+    ctx.i18n = Object.assign(
+      i18nManager.locale(ctx.session.get('locale') || language || i18nManager.defaultLocale),
+      {
+        supportedLocales: i18nManager.supportedLocales(),
+      }
+    )
 
-    ctx.session.put('locale', language || i18nManager.defaultLocale)
+    ctx.session.put('locale', ctx.session.get('locale') || language || i18nManager.defaultLocale)
 
     /**
      * Binding I18n class to the request specific instance of it.

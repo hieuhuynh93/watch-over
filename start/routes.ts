@@ -25,11 +25,15 @@ const DashboardController = () => import('#src/dashboard/controllers/dashboard_c
 router.get('/', [HomeController, 'index']).as('home')
 // router.get('/posts', [PostsController, 'index'])
 
-router.get('/login', [LoginController, 'render']).as('auth.login')
-router.post('/login', [LoginController, 'execute']).as('auth.login.post')
-router.get('/signup', [RegisterController, 'render']).as('auth.signup')
-router.post('/signup', [RegisterController, 'execute']).as('auth.signup.post')
-router.get('/logout', [LogoutController]).as('auth.logout')
+router
+  .group(() => {
+    router.get('/login', [LoginController, 'render']).as('login')
+    router.post('/login', [LoginController, 'execute']).as('login.post')
+    router.get('/signup', [RegisterController, 'render']).as('signup')
+    router.post('/signup', [RegisterController, 'store']).as('signup.store')
+    router.get('/logout', [LogoutController]).as('logout')
+  })
+  .as('auth')
 
 router
   .group(() => {
@@ -40,14 +44,15 @@ router
 
 router
   .group(() => {
-    router.get('/', [DashboardController, 'index']).as('index')
+    router.get('/', [DashboardController, 'index']).as('home')
   })
-  .use(middleware.auth({ guards: ['web'] }))
+  // .use(middleware.auth({ guards: ['user'] }))
   .prefix('dashboard')
+  .as('dashboard')
 
 router
   .group(() => {})
-  .use(middleware.auth({ guards: ['web', 'api'] }))
+  .use(middleware.auth({ guards: ['user'] }))
   .prefix('admin')
   .as('admin')
 

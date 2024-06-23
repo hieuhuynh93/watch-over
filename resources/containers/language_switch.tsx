@@ -1,4 +1,5 @@
 import { useForm, usePage } from '@inertiajs/react'
+import i18next from 'i18next'
 
 import { Select } from '#containers/ui/select'
 import { tuyau } from '#resources/core/tuyau'
@@ -16,7 +17,9 @@ export function LanguageSwitch() {
   function handleChange() {
     if (processing) return
 
-    post(tuyau.$url('language.update', { params: { locale: data.language } }))
+    post(tuyau.$url('language.update', { params: { locale: data.language as string } }))
+    i18next.changeLanguage(data.language as string)
+    document.documentElement.setAttribute('lang', data.language as string)
   }
 
   if (processing)

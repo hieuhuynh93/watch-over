@@ -1,6 +1,6 @@
 import ReactDOMServer from 'react-dom/server'
 
-import i18nConfig from 'i18next'
+import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { createInertiaApp } from '@inertiajs/react'
 
@@ -26,7 +26,7 @@ export default function render(page: any) {
       const { i18n, locale = 'en' }: { i18n: OptionsInterface; locale?: string } =
         props.initialPage.props
 
-      i18nConfig.use(initReactI18next).init({
+      i18next.use(initReactI18next).init({
         resources: {
           [locale]: {
             translation: i18n?.localeTranslations,

@@ -16,7 +16,7 @@ import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
 import { Badge } from '#components/ui/badge'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const { t } = useTranslation()
   const {
     props: { alert },
@@ -32,19 +32,19 @@ export default function LoginPage() {
     if (processing) return
 
     ev.preventDefault()
-    post(tuyau.$url('auth.login'))
+    post(tuyau.$url('auth.signup'))
   }
 
   return (
     <AuthShell>
       <Head>
-        <title>{t('auth.login.title')}</title>
-        <meta head-key="description" name="description" content={t('auth.login.description')} />
+        <title>{t('auth.register.title')}</title>
+        <meta head-key="description" name="description" content={t('auth.register.description')} />
       </Head>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:max-w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">{t('auth.login.connection')}</h1>
-          <p className="text-sm text-muted-foreground">{t('auth.login.description')}</p>
+          <h1 className="text-2xl font-semibold tracking-tight">{t('auth.register.connection')}</h1>
+          <p className="text-sm text-muted-foreground">{t('auth.register.description')}</p>
         </div>
         <div className={cn('grid gap-6')}>
           <a

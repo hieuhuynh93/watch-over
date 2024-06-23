@@ -19,7 +19,7 @@ export default class AuthController {
 
     // Find user
     const user = await User.verifyCredentials(email, password)
-    await auth.use('web').login(user)
+    await auth.use('user').login(user)
 
     return response.redirect().toRoute('dashboard.index')
   }
@@ -75,7 +75,7 @@ export default class AuthController {
     /**
      * Step 3: Login user
      */
-    // await auth.use('web').login(user)
+    // await auth.use('user').login(user)
 
     /**
      * Step 4: Send them to a protected route

@@ -16,7 +16,7 @@ import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
 import { Badge } from '#components/ui/badge'
 
-export default function LoginPage() {
+export default function AdminPage() {
   const { t } = useTranslation()
   const {
     props: { alert },
@@ -47,30 +47,6 @@ export default function LoginPage() {
           <p className="text-sm text-muted-foreground">{t('auth.login.description')}</p>
         </div>
         <div className={cn('grid gap-6')}>
-          <a
-            href="/google/redirect"
-            onClick={(ev) => {
-              processing && ev.preventDefault()
-            }}
-            className={cn('relative inline-flex ', buttonVariants({ variant: 'outline' }))}
-          >
-            {processing ? (
-              <Loader className="mr-2 h-4 w-4" />
-            ) : (
-              <>
-                <span className="inline-flex items-center">
-                  <img src={GoogleIcon} className="mr-2 h-4 w-4" />
-                  Google
-                </span>
-                <Badge
-                  variant="info"
-                  className="absolute -top-[6px] -right-[12px] animate-bounce-rotated"
-                >
-                  {t('common.recommended')}
-                </Badge>
-              </>
-            )}
-          </a>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

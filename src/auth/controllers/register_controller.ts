@@ -8,11 +8,12 @@ export default class RegisterController {
       email: vine
         .string()
         .email()
+        .normalizeEmail()
         .unique(async (db, value) => {
           const user = await db.from('users').where('email', value).first()
           return !user
         }),
-      password: vine.string().minLength(8).confirmed(),
+      password: vine.string().minLength(8),
     })
   )
 
@@ -20,13 +21,14 @@ export default class RegisterController {
     return inertia.render('auth/register')
   }
 
-  async execute({ auth, request, response }: HttpContext) {
-    const { email, password } = await request.validateUsing(RegisterController.validator)
+  async store({ auth, request, response }: HttpContext) {
+    const data = await request.validateUsing(RegisterController.validator)
 
     // Find user
-    const user = await User.verifyCredentials(email, password)
-    await auth.use('web').login(user)
+    const user = await User.create(data)
+    console.log('user', user)
+    await auth.use('user').login(user)
 
-    return response.redirect().toRoute('dashboard.index')
+    return response.redirect().toRoute('/dashboard')
   }
 }
