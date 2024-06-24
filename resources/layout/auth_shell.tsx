@@ -30,11 +30,12 @@ export function AuthShell({ children }: AuthShellProps) {
       <section className="container relative hidden min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="flex gap-4 absolute right-4 top-4 md:right-8 md:top-8">
           <LanguageSwitch />
-          {url === '/login' ? (
+          {url === '/login' && (
             <Link href="/signup" className={cn(buttonVariants({ variant: 'ghost' }))}>
-              {t('auth.signup.title')}
+              {t('auth.register.title')}
             </Link>
-          ) : (
+          )}
+          {url === '/signup' && (
             <Link href="/login" className={cn(buttonVariants({ variant: 'ghost' }))}>
               {t('auth.login.title')}
             </Link>

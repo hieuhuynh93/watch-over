@@ -64,7 +64,7 @@ export default function LoginPage() {
                 </span>
                 <Badge
                   variant="info"
-                  className="absolute -top-[6px] -right-[12px] animate-bounce-rotated"
+                  className="absolute -top-[6px] -right-[12px] rotate-12 group-hover:animate-bounce-rotated"
                 >
                   {t('common.recommended')}
                 </Badge>

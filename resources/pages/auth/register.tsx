@@ -43,7 +43,7 @@ export default function RegisterPage() {
       </Head>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:max-w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">{t('auth.register.connection')}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{t('auth.register.register')}</h1>
           <p className="text-sm text-muted-foreground">{t('auth.register.description')}</p>
         </div>
         <div className={cn('grid gap-6')}>
@@ -52,7 +52,7 @@ export default function RegisterPage() {
             onClick={(ev) => {
               processing && ev.preventDefault()
             }}
-            className={cn('relative inline-flex ', buttonVariants({ variant: 'outline' }))}
+            className={cn('group relative inline-flex ', buttonVariants({ variant: 'outline' }))}
           >
             {processing ? (
               <Loader className="mr-2 h-4 w-4" />
@@ -64,7 +64,7 @@ export default function RegisterPage() {
                 </span>
                 <Badge
                   variant="info"
-                  className="absolute -top-[6px] -right-[12px] animate-bounce-rotated"
+                  className="absolute -top-[6px] -right-[12px] rotate-12 group-hover:animate-bounce-rotated"
                 >
                   {t('common.recommended')}
                 </Badge>

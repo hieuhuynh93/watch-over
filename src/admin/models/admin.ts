@@ -4,10 +4,7 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 
-import { BaseModel, column, hasOne, manyToMany } from '@adonisjs/lucid/orm'
-import type { HasOne, ManyToMany } from '@adonisjs/lucid/types/relations'
-
-import Profile from '#src/users/models/profile'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -27,21 +24,6 @@ export default class Admin extends compose(BaseModel, AuthFinder) {
   @column()
   declare email: string
 
-  @column()
-  declare locale: string
-
   @column({ serializeAs: null })
   declare password: string
-
-  @column()
-  declare rememberMeToken: string | null
-
-  @column()
-  declare isVerified: boolean
-
-  @column()
-  declare emailVerificationToken: string | null
-
-  @hasOne(() => Profile)
-  declare profile: HasOne<typeof Profile>
 }

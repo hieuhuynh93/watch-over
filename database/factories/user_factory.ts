@@ -1,8 +1,8 @@
 import factory from '@adonisjs/lucid/factories'
 
-import User from '#models/user'
+import User from '#src/users/models/user'
 
-import { PostFactory } from './post_factory.js'
+// import { PostFactory } from './post_factory.js'
 
 export const UserFactory = factory
   .define(User, async ({ faker }) => {
@@ -12,5 +12,5 @@ export const UserFactory = factory
       password: faker.internet.password(),
     }
   })
-  .relation('posts', () => PostFactory)
+  // .relation('posts', () => PostFactory)
   .build()
