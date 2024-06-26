@@ -24,14 +24,14 @@ export default class Profile extends BaseModel {
   declare lastName: string
 
   @column()
-  declare avatar: string
+  declare avatar: string | null
 
   @column()
-  declare bio: string
+  declare bio: string | null
 
   @column()
-  declare location: string
+  declare location: string | null
 
   @column()
-  declare website: string
+  declare website: string | null
 }

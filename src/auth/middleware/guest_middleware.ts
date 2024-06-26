@@ -21,7 +21,9 @@ export default class GuestMiddleware {
     options: { guards?: (keyof Authenticators)[] } = {}
   ) {
     for (let guard of options.guards || [ctx.auth.defaultGuard]) {
-      if (await ctx.auth.use(guard).check()) {
+      const isLoggedIn = await ctx.auth.use(guard).check()
+
+      if (isLoggedIn) {
         return ctx.response.redirect(this.redirectTo, true)
       }
     }

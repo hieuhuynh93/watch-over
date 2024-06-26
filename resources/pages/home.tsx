@@ -1,6 +1,7 @@
 import { Head, Link } from '@inertiajs/react'
 
 export default function Home(props: { version: number; user: { name: string } }) {
+  console.log(props.user)
   return (
     <>
       <Head title="Homepage" />
@@ -14,7 +15,7 @@ export default function Home(props: { version: number; user: { name: string } })
           <a href="https://docs.adonisjs.com/guides/inertia">AdonisJS documentation</a>.
         </span>
       </div>
-      <p>{props.user ? 'Hello' + props.user.name : 'Not authenticated'}</p>
+      <p>{props.user ? 'Hello' + props.user.id : 'Not authenticated'}</p>
     </>
   )
 }

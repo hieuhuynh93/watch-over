@@ -26,9 +26,8 @@ export default class RegisterController {
 
     // Find user
     const user = await User.create(data)
-    console.log('user', user)
     await auth.use('user').login(user)
 
-    return response.redirect().toRoute('/dashboard')
+    return response.redirect().toRoute('dashboard.home')
   }
 }

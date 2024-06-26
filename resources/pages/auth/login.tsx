@@ -117,7 +117,7 @@ export default function LoginPage() {
               </div>
               <Button disabled={processing} className="mt-3">
                 {processing && <Loader />}
-                {t('auth.signup')}
+                {t('auth.signin')}
               </Button>
             </div>
           </form>

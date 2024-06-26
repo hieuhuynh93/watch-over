@@ -1,6 +1,6 @@
 import { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Head, useForm, usePage, Link } from '@inertiajs/react'
+import { Head, useForm, usePage } from '@inertiajs/react'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
 import { Label } from '#components/ui/label'
@@ -10,7 +10,6 @@ import { Loader } from '#components/ui/loader'
 import { Input } from '#containers/ui/input'
 
 import { tuyau } from '#resources/core/tuyau'
-import { AuthShell } from '#resources/layout/auth_shell'
 import { cn } from '#resources/lib/utils'
 import { Alert, AlertDescription } from '#components/ui/alert'
 
@@ -31,7 +30,7 @@ export default function AdminPage() {
     console.log('ev', ev, data)
 
     ev.preventDefault()
-    post(tuyau.$url('login.admin.post'))
+    post(tuyau.$url('auth.login.admin.post'))
   }
 
   return (

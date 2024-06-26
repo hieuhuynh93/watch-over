@@ -32,7 +32,7 @@ export default function DashboardLayout({ children }) {
           <div className="flex h-16 items-center px-4">
             {/* <TeamSwitcher /> */}
             {/* <MainNav className="mx-6" /> */}
-            <Link href="/logout" className={cn(buttonVariants({ variant: 'outline' }))}>
+            <Link href="/logout/admin" className={cn(buttonVariants({ variant: 'outline' }))}>
               Logout
             </Link>
             <div className="ml-auto flex items-center space-x-4">

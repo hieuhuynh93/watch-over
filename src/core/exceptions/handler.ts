@@ -39,6 +39,10 @@ export default class HttpExceptionHandler extends ExceptionHandler {
       return ctx.response.redirect().back()
     }
 
+    // if (error instanceof authErrors.E_UNAUTHORIZED_ACCESS) {
+    //   return ctx.response.notFound()
+    // }
+
     return super.handle(error, ctx)
   }
 
